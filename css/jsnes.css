@@ -169,13 +169,13 @@ button.left.joydirection {
 .function button {
     user-select: none;
     margin: 10px;
-    height: 24px;
-    width: 60px;
+    height: 32px;
+    width: auto;
     outline: 0;
-    border: 8px solid #474f51;
+    border: 3px solid #474f51;
     box-shadow: 0 0 0 8px rgba(255, 255, 255, .1), inset 4px 4px 0 0px rgba(255, 255, 255, .4);
     background: #857b7a;
-    color: transparent;
+    color: #000;
     border-radius: 15px;
 }
 
@@ -191,7 +191,7 @@ button.left.joydirection {
     background: #857b7a;
     border-radius: 50%;
     outline: 0;
-    color: transparent;
+    color:#000;
     border: 8px solid #474f51;
     box-shadow: 0 0 0 10px rgba(255, 255, 255, .8), inset 5px 8px 0 0px rgba(255, 255, 255, .4), inset -5px -8px 0 0px rgba(0, 0, 0, .1);
 }
@@ -199,7 +199,6 @@ button.left.joydirection {
 .action button:first-child {
     margin-right: 24px;
 }
-
 .sign {
     position: absolute;
     font-weight: bold;
@@ -294,7 +293,7 @@ button.left.joydirection {
 }
 
 @media screen and (orientation: portrait) {
-    /*竖屏 css*/
+    /*ç«–å± css*/
     .main {
         max-height: 100%;
     }
@@ -351,5 +350,5 @@ button.left.joydirection {
 }
 
 @media screen and (orientation: landscape) {
-    /*横屏 css*/
+    /*æ¨ªå± css*/
 }

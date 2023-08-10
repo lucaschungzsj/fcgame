@@ -47,10 +47,10 @@ if (typeof jQuery !== 'undefined') {
                 self.romSelect = $('<select></select>').appendTo(self.romContainer);
                 self.controls = $('<div class="nes-controls"></div>').appendTo(self.root);
                 self.buttons = {
-                    pause: $('<input type="button" value="暂停" class="nes-pause" disabled="disabled">').appendTo(self.controls),
-                    restart: $('<input type="button" value="重启" class="nes-restart" disabled="disabled">').appendTo(self.controls),
-                    sound: $('<input type="button" value="开启声音" class="nes-enablesound">').appendTo(self.controls),
-                    zoom: $('<input type="button" value="放大" class="nes-zoom">').appendTo(self.controls)
+                    pause: $('<input type="button" value="暂停" class="nes-pause" disabled>').appendTo(self.controls),
+                    restart: $('<input type="button" value="重启" class="nes-restart" disabled>').appendTo(self.controls),
+                    sound: $('<input type="button" value="音效" class="nes-enablesound">').appendTo(self.controls),
+                    zoom: $('<input type="button" value="大屏" class="nes-zoom">').appendTo(self.controls)
                 };
                 self.root.appendTo(parent);
 
@@ -83,10 +83,10 @@ if (typeof jQuery !== 'undefined') {
                 self.buttons.sound.click(function() {
                     if (self.nes.opts.emulateSound) {
                         self.nes.opts.emulateSound = false;
-                        self.buttons.sound.attr("value", "打开声音");
+                        self.buttons.sound.attr("value", "音效");
                     } else {
                         self.nes.opts.emulateSound = true;
-                        self.buttons.sound.attr("value", "关闭声音");
+                        self.buttons.sound.attr("value", "静音");
 
                         var source = self.audio.createBufferSource();
                         source.connect(self.audio.destination); // Output to sound
@@ -106,18 +106,14 @@ if (typeof jQuery !== 'undefined') {
                 if (/(IPHONE|IPAD|ANDROID)/i.test(navigator.userAgent)) {
                     $('#pc-controlls').hide();
                 } else {
-                    $('.nes-zoom').hide();
+                    self.buttons.zoom.attr("disabled", "disabled");
                     $('#mobile-controlls').hide();
                     $('.shang').removeClass('anim_m').addClass('pc');
                 }
 
                 self.buttons.zoom.click(function() {
                     if (self.zoomed) {
-                        //                        self.screen.animate({
-                        //                            width: '512px',
-                        //                            height: '480px'
-                        //                        });
-                        $('body').addClass('放大');
+                        $('body').addClass('大屏');
                         if (document.documentElement.clientHeight < screen.availHeight) {
                             $('body').css({
                                 width: document.documentElement.clientHeight,
@@ -127,14 +123,10 @@ if (typeof jQuery !== 'undefined') {
                             height: document.documentElement.clientWidth,
                             width: 'auto'
                         })
-                        self.buttons.zoom.attr("value", "放大");
+                        self.buttons.zoom.attr("value", "大屏");
                         self.zoomed = true;
                     } else {
-                        //                        self.screen.animate({
-                        //                            width: '256px',
-                        //                            height: '240px'
-                        //                        });
-                        self.buttons.zoom.attr("value", "缩小");
+                        self.buttons.zoom.attr("value", "小屏");
                         $('body').removeClass('big');
                         $('.nes-screen').css({
                             height: 'auto',
@@ -148,7 +140,6 @@ if (typeof jQuery !== 'undefined') {
                         self.zoomed = false;
                     }
                 });
-
                 /*
                  * Lightgun experiments with mouse
                  * (Requires jquery.dimensions.js)
@@ -394,6 +385,7 @@ if (typeof jQuery !== 'undefined') {
                 });
 
                 $('#joystick_btn_up').bind('touchstart', function(e) {
+                    console.log("up");
                     self.nes.keyboard.keyDown({
                         keyCode: 87
                     });
@@ -407,6 +399,7 @@ if (typeof jQuery !== 'undefined') {
                     e.preventDefault();
                 });
                 $('#joystick_btn_down').bind('touchstart', function(e) {
+                    console.log("down");
                     self.nes.keyboard.keyDown({
                         keyCode: 83
                     });
@@ -419,6 +412,7 @@ if (typeof jQuery !== 'undefined') {
                     e.preventDefault();
                 });
                 $('#joystick_btn_left').bind('touchstart', function(e) {
+                    console.log("left");
                     self.nes.keyboard.keyDown({
                         keyCode: 65
                     });
@@ -470,6 +464,7 @@ if (typeof jQuery !== 'undefined') {
                     e.preventDefault();
                 });
                 $('#joystick_btn_select').bind('touchstart', function(e) {
+                    console.log("select");
                     self.nes.keyboard.keyDown({
                         keyCode: 17
                     });
@@ -484,6 +479,7 @@ if (typeof jQuery !== 'undefined') {
                     e.preventDefault();
                 });
                 $('#joystick_btn_start').bind('touchstart', function(e) {
+                    console.log("start");
                     self.nes.keyboard.keyDown({
                         keyCode: 13
                     });
@@ -731,9 +727,9 @@ if (typeof jQuery !== 'undefined') {
                     }
                     this.buttons.restart.attr("disabled", null);
                     if (this.nes.opts.emulateSound) {
-                        this.buttons.sound.attr("value", "关闭声音");
+                        this.buttons.sound.attr("value", "静音");
                     } else {
-                        this.buttons.sound.attr("value", "打开声音");
+                        this.buttons.sound.attr("value", "音效");
                     }
                 },
 

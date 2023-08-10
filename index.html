@@ -12,10 +12,11 @@
     <meta name="x5-orientation" content="landscape">
     <meta name="x5-fullscreen" content="true">
     <meta name="x5-page-mode" content="app">
-    <title>FCGame在线玩 | 麋鹿不见了</title>
-    <meta name="keywords" content="FC游戏在线玩，FC在线模拟器，NES在线模拟器，魂斗罗，超级玛丽，忍者龙剑传" />
-    <meta name="description" content="可在手机电脑上在线玩FC游戏的网站，近乎完美的还原任天堂FC/NES原版ROM游戏的视频和声音。" />
-    <link href="jsnes.css" tppabs="http://fc.liflag.cn/css/jsnes.css" rel="stylesheet" type="text/css" />
+    <title>FC游戏在线玩 | 小霸王其乐无穷</title>
+    <meta name="keywords" content="FC/NES模拟器，在线畅玩八十款任天堂红白机游戏，小霸王游戏机其乐无穷。支持魂斗罗/超级玛丽/忍者龙剑传等等任天堂红白机游戏。" />
+    <meta name="description" content="非常适合在手机/电脑上在线游玩，近乎完美的还原任天堂FC/NES原版ROM游戏的视频和声音。" />
+    <link href="css/jsnes.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="/static/favicon.ico">
 </head>
 
 <body>
@@ -24,14 +25,15 @@
             <div class="controller-area">
                 <div class="controller">
                     <div id="controls-direction">
-                        <button role="BUTTON_UP" class="up joydirection" id="joystick_btn_up">up</button>
-                        <button role="BUTTON_RIGHT" class="right joydirection" id="joystick_btn_right">right</button>
-                        <button role="BUTTON_DOWN" class="down joydirection" id="joystick_btn_down">down</button>
-                        <button role="BUTTON_LEFT" class="left joydirection" id="joystick_btn_left">left</button>
+                        <div id="controls-rocker"></div>
+                        <button role="BUTTON_UP" class="up joydirection" id="joystick_btn_up">U</button>
+                        <button role="BUTTON_RIGHT" class="right joydirection" id="joystick_btn_right">R</button>
+                        <button role="BUTTON_DOWN" class="down joydirection" id="joystick_btn_down">D</button>
+                        <button role="BUTTON_LEFT" class="left joydirection" id="joystick_btn_left">L</button>
                     </div>
                 </div>
                 <div class="joy">I</div>
-               <div><a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzg4NDU0NzE5Ng==&scene=124&uin=&key=&devicetype=Windows+10+x64&version=6302019a&lang=zh_CN&a8scene=7&fontgear=2" tppabs="http://liflag.cn/post/59" target="_blank" class="readme">按键说明</a></div>
+               <div><a href="https://github.com/lucaschungzsj/fcgame#readme" tppabs="" target="_blank" class="readme">按键说明</a></div>
             </div>
             <div class="function-area">
                 <div class="screen">
@@ -39,14 +41,14 @@
                 </div>
                 <div class="function">
                     <button class="controls-center-select joybtn" id="joystick_btn_select" role="BUTTON_SELECT">Select</button>
-                    <button class="controls-center-start joybtn" id="joystick_btn_start" role="BUTTON_START">Pause</button>
+                    <button class="controls-center-start joybtn" id="joystick_btn_start" role="BUTTON_START">Start</button>
                 </div>
             </div>
             <div class="action-area">
                 <div class="action">
                     <div id="controls-fire">
-                        <button class="a joybtn" role="BUTTON_A" id="joystick_btn_A">A</button>
                         <button class="b joybtn" role="BUTTON_B" id="joystick_btn_B">B</button>
+                        <button class="a joybtn" role="BUTTON_A" id="joystick_btn_A">A</button>
                     </div>
                 </div>
             </div>
@@ -54,125 +56,216 @@
         </div>
     </div>
 </body>
-<script src="jquery-1.4.2.min.js" tppabs="http://fc.liflag.cn/lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="dynamicaudio-min.js" tppabs="http://fc.liflag.cn/lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
-<script src="nes.js" tppabs="http://fc.liflag.cn/source/nes.js" type="text/javascript" charset="utf-8"></script>
-<script src="utils.js" tppabs="http://fc.liflag.cn/source/utils.js" type="text/javascript" charset="utf-8"></script>
-<script src="cpu.js" tppabs="http://fc.liflag.cn/source/cpu.js" type="text/javascript" charset="utf-8"></script>
-<script src="keyboard.js" tppabs="http://fc.liflag.cn/source/keyboard.js" type="text/javascript" charset="utf-8"></script>
-<script src="mappers.js" tppabs="http://fc.liflag.cn/source/mappers.js" type="text/javascript" charset="utf-8"></script>
-<script src="papu.js" tppabs="http://fc.liflag.cn/source/papu.js" type="text/javascript" charset="utf-8"></script>
-<script src="ppu.js" tppabs="http://fc.liflag.cn/source/ppu.js" type="text/javascript" charset="utf-8"></script>
-<script src="rom.js" tppabs="http://fc.liflag.cn/source/rom.js" type="text/javascript" charset="utf-8"></script>
-<script src="ui.js" tppabs="http://fc.liflag.cn/source/ui.js" type="text/javascript" charset="utf-8"></script>
-<script src="debug.js" tppabs="http://fc.liflag.cn/lib/debug.js" type="text/javascript" charset="utf-8"></script>
+<script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/nes.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/cpu.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/keyboard.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/mappers.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/papu.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/ppu.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/rom.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/ui.js" type="text/javascript" charset="utf-8"></script>
+<script src="lib/debug.js" type="text/javascript" charset="utf-8"></script>
+<script src="lib/nipplejs.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="lib/joystick.js" type="text/javascript" charset="utf-8"></script>
+<script src="lib/jweixin-1.6.0.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript" charset="utf-8">
     var nes;
     $(function() {
         nes = new JSNES({
             'ui': $('#emulator').JSNESUI({
-                "经典": [
-                    ['纽约大拳猫', 'RockinCats.nes'/*tpa=http://fc.liflag.cn/roms/rom2/RockinCats.nes*/],
-                    ['赤影战士 Kage', 'Kage.nes'/*tpa=http://fc.liflag.cn/roms/other/Kage.nes*/],
-                    ['中国象棋', 'Zhong Guo Xiang Qi.nes'/*tpa=http://fc.liflag.cn/roms/other/Zhong Guo Xiang Qi.nes*/],
-                    ['吃豆精灵 (J) (V1.1) Pac-Man [!]', 'http://fc.liflag.cn/roms/other/Pac-Man.nes'],
-                    ['沙罗曼蛇 (U) Life Force', 'Life Force [!].nes'/*tpa=http://fc.liflag.cn/roms/rom2/Life Force [!].nes*/],
-                    ['1943 (U) 1943 - The Battle of Midway', '1943.nes'/*tpa=http://fc.liflag.cn/roms/rom2/1943.nes*/],
-                    ['脱狱 Cross Fire (J)', 'Cross Fire (J).nes'/*tpa=http://fc.liflag.cn/roms/rom2/Cross Fire (J).nes*/],
-                    ['撞球咖啡馆 Shufflepuck Cafe', 'Shufflepuck Cafe.nes'/*tpa=http://fc.liflag.cn/roms/rom2/Shufflepuck Cafe.nes*/],
-                    ['功夫 (J) (V1.2) Yie Ar Kung-Fu [!]', '(J) (V1.2) Yie Ar Kung-Fu [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) (V1.2) Yie Ar Kung-Fu [!].nes*/],
-                ],
-                "魂斗罗": [
-                    ['魂斗罗1(U)30', 'Contra1(U)30.nes'/*tpa=http://fc.liflag.cn/roms/Contra/Contra1(U)30.nes*/],
-                    ['魂斗罗1(U)30F', 'Contra1(U)30F.nes'/*tpa=http://fc.liflag.cn/roms/Contra/Contra1(U)30F.nes*/],
-                    ['魂斗罗1(U)30L', 'Contra1(U)30L.nes'/*tpa=http://fc.liflag.cn/roms/Contra/Contra1(U)30L.nes*/],
-                    ['魂斗罗1(U)30M', 'Contra1(U)30M.nes'/*tpa=http://fc.liflag.cn/roms/Contra/Contra1(U)30M.nes*/],
-                    ['魂斗罗1(U)30S', 'Contra1(U)30S.nes'/*tpa=http://fc.liflag.cn/roms/Contra/Contra1(U)30S.nes*/],
-                    ['魂斗罗1(U)F', 'Contra1(U)F.nes'/*tpa=http://fc.liflag.cn/roms/Contra/Contra1(U)F.nes*/],
-                    ['魂斗罗1(U)L', 'Contra1(U)L.nes'/*tpa=http://fc.liflag.cn/roms/Contra/Contra1(U)L.nes*/],
-                    ['魂斗罗1(U)M', 'Contra1(U)M.nes'/*tpa=http://fc.liflag.cn/roms/Contra/Contra1(U)M.nes*/],
-                    ['魂斗罗1(U)S', 'Contra1(U)S.nes'/*tpa=http://fc.liflag.cn/roms/Contra/Contra1(U)S.nes*/],
-                ],
-                "坦克": [
-                    ['坦克 (Ch) Missile Tank', '(Ch) Missile Tank.nes'/*tpa=http://fc.liflag.cn/roms/rom1/(Ch) Missile Tank.nes*/],
-                    ['坦克 (Ch) Tank 1990', '(Ch) Tank 1990.nes'/*tpa=http://fc.liflag.cn/roms/rom1/(Ch) Tank 1990.nes*/],
-                    ['坦克 (J) Battle City', '(J) Battle City.nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Battle City.nes*/],
+                "经典热门": [
+                    ['沙罗曼蛇 (U) Life Force [!]', 'roms/Life Force [!].nes'],
+                    ['超级马里奥1 (W) Super Mario Bros. [!]', 'roms/(W) Super Mario Bros. [!].nes'],
+                    ['坦克 (J) Battle City [!]', 'roms/(J) Battle City.nes'],
+                    ['魂斗罗1 (U) 30S [!]', 'roms/Contra1(U)30S.nes'],
+                    ['赤影战士 Kage [!]', 'roms/Kage.nes'],
+                    ['脱狱 Cross Fire (J)', 'roms/Cross Fire (J).nes'],
+                    ['双截龙2 Double Dragon2 [!]', 'roms/Double Dragon2.nes'],
+                    ['塞尔达传说2：林克的冒险 [!] Zelda II - The Adventure of Link(U) [!]', 'roms/Zelda II - The Adventure of Link (U).nes'],
+                    ['冒险岛1 (J) Adventure Island [!]', 'roms/(J) Takahashi Meijin no Bouken Shima [!].nes'],
+                    ['1943 (U) 1943 - The Battle of Midway [!]', 'roms/1943.nes'],
+                    ['火箭车 (J) Road Fighter [!]', 'roms/(J) Road Fighter [!].nes'],
+                    ['越野机车 (JU) Excitebike [!]', 'roms/(JU) Excitebike [!].nes'],
+                    ['功夫 (J) (V1.2) Yie Ar Kung-Fu [!]', 'roms/(J) (V1.2) Yie Ar Kung-Fu [!].nes'],
+                    ['淘金者(汉化) [!]', 'roms/TaoJinZhe.nes'],
+                    ['俄罗斯方块 (U) Tetris 2 [!]', 'roms/Tetris 2 (U) [!].nes'],
+                    ['中国象棋 [!]', 'roms/Zhong Guo Xiang Qi.nes'],
+                    ['五子棋 (5) 日版 [!]', 'roms/5.nes'],
+                    ['炸弹人1 [!] (J) Bomberman [!]', 'roms/(J) Bomberman [!].nes'],
                 ],
                 "超级玛丽": [
-                    ['超级马里奥1 (W) Super Mario Bros. [!]', '(W) Super Mario Bros. [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(W) Super Mario Bros. [!].nes*/],
-                    ['超级马里奥2 (W) Super Mario Bros. 3 (U)', 'Super Mario Bros. 3 (U) (PRG1) [!].nes'/*tpa=http://fc.liflag.cn/roms/bfirsh/Super Mario Bros. 3 (U) (PRG1) [!].nes*/],
-                    ['马里奥拆屋工 (W) Wrecking Crew [!]', '(W) Wrecking Crew [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(W) Wrecking Crew [!].nes*/],
-                    ['马里奥医生 Dr. Mario (JU)', 'Dr. Mario (JU).nes'/*tpa=http://fc.liflag.cn/roms/bfirsh/Dr. Mario (JU).nes*/],
+                    ['超级马里奥1 (W) Super Mario Bros. [!]', 'roms/(W) Super Mario Bros. [!].nes'],
+                    ['超级马里奥2 (W) Super Mario Bros. 3 (U)', 'roms/Super Mario Bros. 3 (U) (PRG1) [!].nes'],
+                    ['马里奥拆屋工 (W) Wrecking Crew', 'roms/(W) Wrecking Crew [!].nes'],
+                    ['马里奥医生 (JU) Dr. Mario', 'roms/Dr. Mario (JU).nes'],
+                ],
+                "坦克大战": [
+                    ['坦克大战 (J) Battle City [!]', 'roms/(J) Battle City.nes'],
+                    ['导弹坦克 (Ch) Missile Tank', 'roms/(Ch) Missile Tank.nes'],
+                    ['坦克1990 (Ch) Tank 1990', 'roms/(Ch) Tank 1990.nes'],
+                ],
+                "魂斗罗": [
+                    ['魂斗罗1 (U) 30S [!]', 'roms/Contra1(U)30S.nes'],
+                    ['魂斗罗1 (U) 30', 'roms/Contra1(U)30.nes'],
+                    ['魂斗罗1 (U) 30F', 'roms/Contra1(U)30F.nes'],
+                    ['魂斗罗1 (U) 30L', 'roms/Contra1(U)30L.nes'],
+                    ['魂斗罗1 (U) 30M', 'roms/Contra1(U)30M.nes'],
+                    ['魂斗罗1 (U) S [!]', 'roms/Contra1(U)S.nes'],
+                    ['魂斗罗1 (U) F', 'roms/Contra1(U)F.nes'],
+                    ['魂斗罗1 (U) L', 'roms/Contra1(U)L.nes'],
+                    ['魂斗罗1 (U) M', 'roms/Contra1(U)M.nes'],
                 ],
                 "双截龙": [
-                    ['双截龙1 Double Dragon1', 'Double Dragon1.nes'/*tpa=http://fc.liflag.cn/roms/Double Dragon/Double Dragon1.nes*/],
-                    ['双截龙2 Double Dragon2', 'Double Dragon2.nes'/*tpa=http://fc.liflag.cn/roms/Double Dragon/Double Dragon2.nes*/],
-                    ['双截龙3 Double Dragon3', 'Double Dragon3.nes'/*tpa=http://fc.liflag.cn/roms/Double Dragon/Double Dragon3.nes*/],
-                    ['双截龙4 Double Dragon4', 'Double Dragon4.nes'/*tpa=http://fc.liflag.cn/roms/Double Dragon/Double Dragon4.nes*/],
+                    ['双截龙2 Double Dragon2 [!]', 'roms/Double Dragon2.nes'],
+                    ['双截龙1 Double Dragon1', 'roms/Double Dragon1.nes'],
+                    ['双截龙3 Double Dragon3', 'roms/Double Dragon3.nes'],
+                    ['双截龙4 Double Dragon4', 'roms/Double Dragon4.nes'],
                 ],
                 "淘金者": [
-                    ['淘金者(汉化)', 'TaoJinZhe.nes'/*tpa=http://fc.liflag.cn/roms/rom1/TaoJinZhe.nes*/],
-                    ['淘金者(J)', 'Championship Lode Runner (J).nes'/*tpa=http://fc.liflag.cn/roms/rom1/Championship Lode Runner (J).nes*/],
+                    ['淘金者(汉化) [!]', 'roms/TaoJinZhe.nes'],
+                    ['淘金者(J)', 'roms/Championship Lode Runner (J).nes'],
                 ],
                 "俄罗斯方块": [
-                    ['俄罗斯方块LJ65', 'lj65.nes'/*tpa=http://fc.liflag.cn/roms/lj65/lj65.nes*/],
-                    ['俄罗斯方块Tetris(U)', 'Tetris (U) [!].nes'/*tpa=http://fc.liflag.cn/roms/other/Tetris (U) [!].nes*/],
-                    ['俄罗斯方块Tetris 2(U)', 'Tetris 2 (U) [!].nes'/*tpa=http://fc.liflag.cn/roms/other/Tetris 2 (U) [!].nes*/],
+                    ['俄罗斯方块2 (U) Tetris 2 [!]', 'roms/Tetris 2 (U) [!].nes'],
+                    ['俄罗斯方块 LJ65', 'roms/lj65.nes'],
+                    ['俄罗斯方块 Tetris(U)', 'roms/Tetris (U) [!].nes'],
+                    ['俄罗斯方块 (Tengen) Tetris [!]', 'roms/(Tengen) Tetris [!].nes'],
                 ],
-                "赛车": [
-                    ['F1赛车 (J) F-1 Race [!]', '(J) F-1 Race [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) F-1 Race [!].nes*/],
-                    ['摩托车大赛 (JU) (PRG0) Mach Rider [!]', '(JU) (PRG0) Mach Rider [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(JU) (PRG0) Mach Rider [!].nes*/],
-                    ['越野机车 (JU) Excitebike [!]', '(JU) Excitebike [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(JU) Excitebike [!].nes*/],
-                    ['火箭车 (J) Road Fighter [!]', '(J) Road Fighter [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Road Fighter [!].nes*/],
+                "飞机类":[
+                    ['沙罗曼蛇 (U) Life Force [!]', 'roms/Life Force [!].nes'],
+                    ['1943 (U) 1943 - The Battle of Midway [!]', 'roms/1943.nes'],
+                    ['兵蜂1 (J) TwinBee [!]', 'roms/(J) TwinBee [!].nes'],
                 ],
-                "1981": [
-                    ['五子棋 (5) 日版', '5.nes'/*tpa=http://fc.liflag.cn/roms/1981/5.nes*/],
+                "赛车类": [
+                    ['火箭车 (J) Road Fighter [!]', 'roms/(J) Road Fighter [!].nes'],
+                    ['越野机车 (JU) Excitebike [!]', 'roms/(JU) Excitebike [!].nes'],
+                    ['F1赛车 (J) F-1 Race', 'roms/(J) F-1 Race [!].nes'],
+                    ['摩托车大赛 (JU) (PRG0) Mach Rider', 'roms/(JU) (PRG0) Mach Rider [!].nes'],
                 ],
-                "其它": [
-                    ['泡泡 Bubble Bobble (U)', 'Bubble Bobble (U).nes'/*tpa=http://fc.liflag.cn/roms/bfirsh/Bubble Bobble (U).nes*/],
-                    ['Concentration Room', 'croom.nes'/*tpa=http://fc.liflag.cn/roms/croom/croom.nes*/],
-                    ['网球Tennis(JU)', 'Tennis (JU) [!].nes'/*tpa=http://fc.liflag.cn/roms/other/Tennis (JU) [!].nes*/],
-                    ['高尔夫 Golf (JU)', 'Golf (JU).nes'/*tpa=http://fc.liflag.cn/roms/bfirsh/Golf (JU).nes*/],
-                    ['Zelda II - The Adventure of Link(U)', 'Zelda II - The Adventure of Link (U).nes'/*tpa=http://fc.liflag.cn/roms/other/Zelda II - The Adventure of Link (U).nes*/],
-                    ['地底探险1 (J) Spelunker [!]', '(J) Spelunker [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Spelunker [!].nes*/],
-                    ['快乐猫 (J) Mappy [!]', '(J) Mappy [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Mappy [!].nes*/],
-                    ['成龙踢馆1 (J) Spartan X [!]', '(J) Spartan X [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Spartan X [!].nes*/],
-                    ['敲冰块 (J) Ice Climber', '(J) Ice Climber.nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Ice Climber.nes*/],
-                    ['炸弹人1 (J) Bomberman [!]', '(J) Bomberman [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Bomberman [!].nes*/],
-                    ['猪小弟 (J) Pooyan', '(J) Pooyan.nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Pooyan.nes*/],
-                    ['马戏团 (J) Circus Charlie [!]', '(J) Circus Charlie [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Circus Charlie [!].nes*/],
+                "运动类": [
+                    ['网球Tennis(JU)', 'roms/Tennis (JU) [!].nes'],
+                    ['高尔夫 Golf (JU)', 'roms/Golf (JU).nes'],
                 ],
-                // "不可用": [
-                //     ['Concentration Room', 'croom.nes'/*tpa=http://fc.liflag.cn/roms/croom/croom.nes*/],
-                //     ['LJ65', 'lj65.nes'/*tpa=http://fc.liflag.cn/roms/lj65/lj65.nes*/],
-                //     ['赤色要塞 (KC) Jackal', 'Jackal.nes'/*tpa=http://fc.liflag.cn/roms/other/Jackal.nes*/],
-                //     ['花式撞球 (U) Side Pocket', 'Side Pocket.nes'/*tpa=http://fc.liflag.cn/roms/rom2/Side Pocket.nes*/],
-                //     ['彩虹岛 (U) Rainbow Islands', 'Rainbow Islands.nes'/*tpa=http://fc.liflag.cn/roms/rom2/Rainbow Islands.nes*/],
-                //     ['快打旋风 (U) Mighty Final Fight', 'Mighty Final Fight.nes'/*tpa=http://fc.liflag.cn/roms/rom2/Mighty Final Fight.nes*/],
-
-                //     ['七宝奇谋1 (J) Goonies, The [!]', '(J) Goonies, The [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Goonies, The [!].nes*/],
-                //     ['俄罗斯方块 (Tengen) Tetris [!]', '(Tengen) Tetris [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(Tengen) Tetris [!].nes*/],
-                //     ['兵蜂1 (J) TwinBee [!]', '(J) TwinBee [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) TwinBee [!].nes*/],
-                //     ['冒险岛1 (J) Takahashi Meijin no Bouken Shima [!]', '(J) Takahashi Meijin no Bouken Shima [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Takahashi Meijin no Bouken Shima [!].nes*/],
-                //     ['南极大冒险 (J) Antarctic Adventure [!]', '(J) Antarctic Adventure [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Antarctic Adventure [!].nes*/],
-                //     ['叮当1 (J) Dig Dug [!]', '(J) Dig Dug [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Dig Dug [!].nes*/],
-
-                //     ['影之传说 (J) Kage no Densetsu [!]', '(J) Kage no Densetsu [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Kage no Densetsu [!].nes*/],
-                //     ['打砖块1 (J) Arkanoid [!]', '(J) Arkanoid [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Arkanoid [!].nes*/],
-                //     ],
-                "忍者龙剑传": [
-                    ['忍者龙剑传1 (PC10) Ninja Gaiden', 'Ninja_Gaiden1.nes'/*tpa=http://fc.liflag.cn/roms/Ninja_Gaiden/Ninja_Gaiden1.nes*/],
-                    ['忍者龙剑传2 (PC10) Ninja Gaiden II - The Dark Sword of Chaos', 'Ninja_Gaiden2.nes'/*tpa=http://fc.liflag.cn/roms/Ninja_Gaiden/Ninja_Gaiden2.nes*/],
-                    ['忍者龙剑传3 (PC10) Ninja Gaiden III - The Ancient Ship of Doom', 'Ninja_Gaiden3.nes'/*tpa=http://fc.liflag.cn/roms/Ninja_Gaiden/Ninja_Gaiden3.nes*/],
-                    ['小蜜蜂 (J) Galaxian [!]', '(J) Galaxian [!].nes'/*tpa=http://fc.liflag.cn/roms/rom1/(J) Galaxian [!].nes*/],
-                    ['AV麻雀俱乐部 (Hacker) AV Mahjongg', '(Hacker) AV Mahjongg.nes'/*tpa=http://fc.liflag.cn/roms/rom1/(Hacker) AV Mahjongg.nes*/],
+                "棋牌类": [
+                    ['中国象棋 [!]', 'roms/Zhong Guo Xiang Qi.nes'],
+                    ['五子棋 (5) 日版 [!]', 'roms/5.nes'],
+                    ['Concentration Room', 'roms/croom.nes'],
+                    ['AV麻雀俱乐部 (Hacker) AV Mahjongg', 'roms/(Hacker) AV Mahjongg.nes'],
+                ],
+                "其他": [
+                    ['马戏团 (J) Circus Charlie', 'roms/(J) Circus Charlie [!].nes'],
+                    ['敲冰块 (J) Ice Climber', 'roms/(J) Ice Climber.nes'],
+                    ['纽约大拳猫 (JP)', 'roms/RockinCats.nes'],
+                    ['撞球咖啡馆 Shufflepuck Cafe', 'roms/Shufflepuck Cafe.nes'],
+                    ['泡泡龙 Bubble Bobble (U)', 'roms/Bubble Bobble (U).nes'],
+                    ['地底探险1 (J) Spelunker', 'roms/(J) Spelunker [!].nes'],
+                    ['快乐猫 (J) Mappy', 'roms/(J) Mappy [!].nes'],
+                    ['成龙踢馆1 (J) Spartan X', 'roms/(J) Spartan X [!].nes'],
+                    ['猪小弟 (J) Pooyan', 'roms/(J) Pooyan.nes'],
+                    ['打砖块1 (J) Arkanoid', 'roms/(J) Arkanoid [!].nes'],
+                ],
+                "不可用": [
+                    ['小蜜蜂 (J) Galaxian', 'roms/(J) Galaxian [!].nes'],
+                    ['赤色要塞 (KC) Jackal [!]', 'roms/Jackal.nes'],
+                    ['花式撞球 (U) Side Pocket', 'roms/Side Pocket.nes'],
+                    ['彩虹岛 (U) Rainbow Islands', 'roms/Rainbow Islands.nes'],
+                    ['快打旋风 (U) Mighty Final Fight [!]', 'roms/Mighty Final Fight.nes'],
+                    ['忍者龙剑传1 (PC10) Ninja Gaiden [!]', 'roms/Ninja_Gaiden1.nes'],
+                    ['忍者龙剑传2 (PC10) Ninja Gaiden II [!]', 'roms/Ninja_Gaiden2.nes'],
+                    ['忍者龙剑传3 (PC10) Ninja Gaiden III [!]', 'roms/Ninja_Gaiden3.nes'],
+                    ['七宝奇谋1 (J) Goonies, The [!]', 'roms/(J) Goonies, The [!].nes'],
+                    ['南极大冒险 (J) Antarctic Adventure', 'roms/(J) Antarctic Adventure [!].nes'],
+                    ['叮当1 (J) Dig Dug', 'roms/(J) Dig Dug [!].nes'],
+                    ['影之传说 (J) Kage no Densetsu [!]', 'roms/(J) Kage no Densetsu [!].nes'],
                 ],
             })
         });
     });
 </script>
 <!--[if IE]>
-    <script type="text/vbscript" src="jsnes-ie-hacks.vbscript" tppabs="http://fc.liflag.cn/source/jsnes-ie-hacks.vbscript"></script>
+    <script type="text/vbscript" src="lib/jsnes-ie-hacks.vbscript"></script>
 <![endif]-->
+<script>
+    function touchDwon(evt) {
+    nes.keyboard.keyDown({
+        keyCode: evt.keyCode
+    });
+};
 
+function touchUp(evt) {
+    nes.keyboard.keyUp({
+        keyCode: evt.keyCode
+    });
+};
+
+function select(val) {
+    if (val.substring(0, 1) == "#") {
+        return document.querySelector(val);
+    } else {
+        return document.getElementById(val);
+    }
+}
+
+var joystick = new Joystick({
+    el: select("controls-rocker"),
+    mode: 'static',
+    color: "#808080",
+    size: 150,
+    isFourBtn: false,
+    keyCodes: [87, 83, 65, 68],
+    btn_down_fn: touchDwon,
+    btn_up_fn: touchUp,
+    relative: true,
+});
+joystick.init();
+</script>
+<!-- <script>
+    var url=location.href;
+    var imageUrl = '../static/fc.png';
+
+    $.ajax({
+        type : "get",
+        url : "/wx/jssdk?url="+url,
+        success : function(r){
+            var data = r.data;
+            wx.config({
+                debug: false,
+                appId: data.appId,
+                timestamp: data.timestamp,
+                nonceStr: data.nonceStr,
+                signature: data.signature,
+                jsApiList: [
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'onMenuShareQZone'
+
+                ]
+            });
+        }
+    });
+
+    wx.ready(function () {
+        var shareData = {
+            title: '小霸王游戏机，时光倒转回童年',
+            desc: '在线游玩魂斗罗/超级玛丽/双截龙/冒险岛等等八十款任天堂红白机游戏！爷的青春回来了',
+            link: url,
+            imgUrl: imageUrl
+        };
+
+        wx.onMenuShareAppMessage(shareData);//分享给好友
+        wx.onMenuShareTimeline(shareData);//分享到朋友圈
+        wx.onMenuShareQQ(shareData);//分享给手机QQ
+        wx.onMenuShareWeibo(shareData);//分享腾讯微博
+        wx.onMenuShareQZone(shareData);//分享到QQ空间
+    });
+    wx.error(function (res) {
+        //alert(res.errMsg);//错误提示
+    });
+</script> -->
 </html>
